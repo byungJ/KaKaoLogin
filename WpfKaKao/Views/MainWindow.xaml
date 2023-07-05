@@ -1,0 +1,67 @@
+﻿<Window
+    x:Class="WpfKaKao.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:WpfKaKao.Controls"
+    xmlns:ctrl="clr-namespace:WpfKaKao.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfKaKao"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:WpfKaKao.ViewModels"
+    Title="MainWindow"
+    Width="350"
+    Height="550"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <!--  viewmodel  -->
+        <DataTemplate DataType="{x:Type vm:LoginControlViewModel}">
+            <!--  view  -->
+            <ctrl:LoginControl />
+        </DataTemplate>
+        <!--  viewmodel  -->
+        <DataTemplate DataType="{x:Type vm:ChangePwdControlViewModel}">
+            <!--  view  -->
+            <ctrl:ChangePwdControl />
+        </DataTemplate>
+        <!--  viewmodel  -->
+        <DataTemplate DataType="{x:Type vm:SignupControlViewModel}">
+            <!--  view  -->
+            <ctrl:SignupControl />
+        </DataTemplate>
+    </Window.Resources>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="20" ResizeBorderThickness="2" />
+    </WindowChrome.WindowChrome>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  Title Bar  -->
+        <controls:TitleBar Grid.Row="0" />
+
+        <!--  Body  -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+
+            <!--
+                UserControl을 연관을 시켜서 해당 ContentControl추가를 할려고 하면
+                DataTemplate을 이용해야 합니다.
+            -->
+            <ContentControl Content="{Binding CurrentViewModel}" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Command="{Binding ToLoginCommand}" Content="로그인" />
+                <Button Command="{Binding ToChangePwdCommand}" Content="비밀번호변경" />
+                <Button Command="{Binding ToSignupCommand}" Content="회원가입" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
