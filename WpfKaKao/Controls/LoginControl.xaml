@@ -43,7 +43,12 @@
                 Background="White"
                 WaterMarkText="이메일을 입력하세요." />
             <!--<ComboBox Height="{StaticResource ElementHeight}" />-->
-            <PasswordBox Height="{StaticResource ElementHeight}" />
+            <controls:PasswordBoxControl
+                Height="{StaticResource ElementHeight}"
+                Background="White"
+                Password="1234"
+                WaterMarkText="비밀번호를 입력하세요."
+                WaterMarkTextColor="Red" />
             <Button
                 Height="{StaticResource ElementHeight}"
                 Margin="0,10,0,0"
